@@ -2,7 +2,7 @@ import React from "react";
 
 const IdeasList = (props) => {
   return (
-    <ul className='mb-2 w-6 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white'>
+    <ul className='mb-2 w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white'>
       {props.ideas.map((idea, index) => {
         return (
           <li

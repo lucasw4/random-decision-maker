@@ -1,31 +1,60 @@
 import React, { useEffect, useState } from "react";
+import { PieChart } from "react-minimal-pie-chart";
 import IdeasList from "./components/IdeasList";
+import WheelOfFortune from "./components/WheelOfFortune";
 
 function App() {
   const [ideas, setIdeas] = useState([]);
   const [randomIdea, setRandomIdea] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+  const [spinning, setSpinning] = useState(false);
 
   const handleAddIdeas = function (event) {
     event.preventDefault();
     const newIdea = event.target.elements.idea.value.trim();
-    setIdeas([...ideas, newIdea]);
-    event.target.reset();
+
+    if (ideas.length <= 24) {
+      setIdeas([...ideas, newIdea]);
+      event.target.reset();
+    } else {
+      console.log("Error, trying to add too many ideas");
+    }
   };
 
-  const handleRandomIdea = function (event) {
-    event.preventDefault();
-    const randomIndex = Math.floor(Math.random() * ideas.length);
+  function generateRandomIndex(array) {
+    return Math.floor(Math.random() * array.length);
+  }
+
+  const handleRandomIdea = function () {
+    const randomIndex = generateRandomIndex(ideas);
     setRandomIdea(ideas[randomIndex]);
   };
 
-  const clickHandler = function (event) {
-    handleRandomIdea(event);
-    setIsOpen(true);
+  const handleSpin = function () {
+    if (spinning) {
+      return;
+    }
+
+    setSpinning(true);
+
+    setTimeout(() => {
+      clickHandler();
+      setSpinning(false);
+    }, 2000);
+  };
+
+  const clickHandler = function () {
+    if (ideas.length >= 1) {
+      handleRandomIdea();
+      setIsOpen(true);
+    }
   };
 
   return (
     <div className='App dark:bg-gray-900 h-screen flex justify-center items-center'>
+      {ideas.length >= 1 && (
+        <WheelOfFortune ideas={ideas} onSpin={handleSpin} spinning={spinning} />
+      )}
       <div className='max-w-lg w-96 h-96 p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'>
         <form onSubmit={handleAddIdeas}>
           <label
@@ -64,12 +93,12 @@ function App() {
         </div>
       </div>
       <div
-        className={isOpen ? "fixed h-screen w-screen bg-black/40" : "hidden"}
+        className={isOpen ? "fixed h-screen w-screen bg-black/60" : "hidden"}
       ></div>
       <div
         className={
           isOpen
-            ? "fixed z-50 top-1/2 left-1/2 right-1/2 flex justify-center"
+            ? "fixed z-50 top-[40%] left-1/2 right-1/2 flex justify-center"
             : "hidden"
         }
       >
