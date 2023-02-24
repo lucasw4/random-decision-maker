@@ -1,33 +1,87 @@
 import React, { useEffect, useState } from "react";
-import { PieChart } from "react-minimal-pie-chart";
 import IdeasList from "./components/IdeasList";
 import WheelOfFortune from "./components/WheelOfFortune";
+import { generateRandomIndex } from "./helpers/helpers";
+
+const segmentColors = [
+  "#8c3b1a",
+  "#9143e2",
+  "#4bae37",
+  "#db40d6",
+  "#569d4a",
+  "#592db1",
+  "#8c9e2a",
+  "#505dd8",
+  "#de821d",
+  "#6982e1",
+  "#e24720",
+  "#4794cd",
+  "#d4403e",
+  "#45a889",
+  "#a630a6",
+  "#356d23",
+  "#dc68da",
+  "#71751c",
+  "#a46adc",
+  "#b58f3a",
+  "#70398e",
+  "#8a9550",
+  "#e3449f",
+  "#2e774f",
+  "#dd3b6c",
+  "#4e5b1e",
+  "#c571ba",
+  "#85602c",
+  "#425092",
+  "#c97441",
+  "#957fc3",
+  "#90343d",
+  "#d0719a",
+  "#833e68",
+  "#d67171",
+  "#a02a6c",
+];
 
 function App() {
   const [ideas, setIdeas] = useState([]);
   const [randomIdea, setRandomIdea] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [spinning, setSpinning] = useState(false);
+  const [availableColors, setAvailableColors] = useState(segmentColors);
+
+  function getRandomColor(segmentColors) {
+    const index = generateRandomIndex(segmentColors);
+    const color = availableColors[index];
+    const remainingColors = [
+      ...availableColors.slice(0, index),
+      ...availableColors.slice(index + 1),
+    ];
+    setAvailableColors(remainingColors);
+    return color;
+  }
 
   const handleAddIdeas = function (event) {
     event.preventDefault();
     const newIdea = event.target.elements.idea.value.trim();
 
     if (ideas.length <= 24) {
-      setIdeas([...ideas, newIdea]);
+      setIdeas((prev) => {
+        const newIdeas = [...prev];
+        newIdeas.push({
+          name: newIdea,
+          color: getRandomColor(availableColors),
+        });
+        return newIdeas;
+      });
       event.target.reset();
     } else {
       console.log("Error, trying to add too many ideas");
     }
   };
 
-  function generateRandomIndex(array) {
-    return Math.floor(Math.random() * array.length);
-  }
-
   const handleRandomIdea = function () {
     const randomIndex = generateRandomIndex(ideas);
-    setRandomIdea(ideas[randomIndex]);
+    setRandomIdea(ideas[randomIndex].name);
   };
 
   const handleSpin = function () {

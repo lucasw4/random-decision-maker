@@ -9,7 +9,7 @@ const IdeasList = (props) => {
             key={index}
             className='block w-full px-4 py-2 border-b border-gray-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:focus:ring-gray-500 dark:focus:text-white'
           >
-            {idea}
+            {idea.name}
           </li>
         );
       })}

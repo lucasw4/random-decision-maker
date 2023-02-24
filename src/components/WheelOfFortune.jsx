@@ -1,5 +1,6 @@
 import React from "react";
 import { PieChart } from "react-minimal-pie-chart";
+import { ReactComponent as Triangle } from "../triangle-down.svg";
 
 const WheelOfFortune = ({ spinning, onSpin, ideas }) => {
   function handleSpinClick() {
@@ -10,50 +11,15 @@ const WheelOfFortune = ({ spinning, onSpin, ideas }) => {
     onSpin();
   }
 
-  function generateRandomIndex(array) {
-    return Math.floor(Math.random() * array.length);
-  }
-
-  const segmentColors = [
-    "#EF4444",
-    "#EA580C",
-    "#16A34A",
-    "#059669",
-    "#0369A1",
-    "#4338CA",
-    "#7E22CE",
-    "#BE123C",
-    "#BE185D",
-    "#CA8A04",
-    "#14B8A6",
-    "#34D399",
-    "#8B5CF6",
-    "#7F1D1D",
-    "#7C2D12",
-    "#78350F",
-    "#713F12",
-    "#365314",
-    "#14532D",
-    "#064E3B",
-    "#134E4A",
-    "#164E63",
-    "#0C4A6E",
-    "#1E3A8A",
-    "#312E81",
-  ];
-
   const data = ideas.map((idea) => {
-    function getRandomColor(colorArray) {
-      const index = generateRandomIndex(colorArray);
-      return colorArray.splice(index, 1)[0];
-    }
-
     return {
-      title: idea,
+      title: idea.name,
       value: 100 / ideas.length,
-      color: getRandomColor(segmentColors),
+      color: idea.color,
     };
   });
+
+  const startAngle = Math.floor(Math.random() * 360);
 
   return (
     <div className='relative flex justify-center items-center w-96 h-96 mx-5'>
@@ -68,15 +34,17 @@ const WheelOfFortune = ({ spinning, onSpin, ideas }) => {
         }}
         labelPosition={100}
         radius={40}
-        animate={false}
+        animate={spinning}
+        startAngle={startAngle}
       />
       <button
-        className='absolute z-10 px-4 py-2 font-semibold text-white bg-blue-500 rounded-full'
+        className='absolute z-10 px-4 py-2 font-semibold text-white bg-blue-500 rounded-full '
         style={{ left: "50%", top: "50%", transform: "translate(-50%, -50%)" }}
         onClick={handleSpinClick}
       >
         Spin
       </button>
+      <Triangle className='absolute top-4' />
     </div>
   );
 };
