@@ -13,6 +13,7 @@ const WheelOfFortune = ({ spinning, onSpin, ideas }) => {
   function generateRandomIndex(array) {
     return Math.floor(Math.random() * array.length);
   }
+
   const segmentColors = [
     "#EF4444",
     "#EA580C",
@@ -41,21 +42,16 @@ const WheelOfFortune = ({ spinning, onSpin, ideas }) => {
     "#312E81",
   ];
 
-  const colors = [];
-
   const data = ideas.map((idea) => {
-    let pickColor;
-    let randomColor = segmentColors[generateRandomIndex(segmentColors)];
-
-    if (!colors.includes(randomColor)) {
-      pickColor = randomColor;
-      colors.push(randomColor);
+    function getRandomColor(colorArray) {
+      const index = generateRandomIndex(colorArray);
+      return colorArray.splice(index, 1)[0];
     }
 
     return {
       title: idea,
       value: 100 / ideas.length,
-      color: pickColor,
+      color: getRandomColor(segmentColors),
     };
   });
 
