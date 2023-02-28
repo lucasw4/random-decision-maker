@@ -81,7 +81,8 @@ function App() {
 
   const handleRandomIdea = function () {
     const randomIndex = generateRandomIndex(ideas);
-    setRandomIdea(ideas[randomIndex].name);
+    setRandomIdea({ idea: ideas[randomIndex].name, index: randomIndex });
+    return randomIndex;
   };
 
   const handleSpin = function () {
@@ -91,10 +92,31 @@ function App() {
 
     setSpinning(true);
 
+    const winningIndex = handleRandomIdea();
+
+    console.log(winningIndex);
+
+    const percentage = 360 / ideas.length;
+    const angle = percentage * winningIndex + percentage / 2;
+    let spinAmount = 360 - angle;
+
+    console.log(angle);
+    // console.log(spinAmount);
+
+    // spinAmount += 1080;
+    spinAmount += 270;
+    spinAmount += 2160;
+
+    console.log(spinAmount);
+
+    document.getElementById(
+      "pie-container"
+    ).style.transform = `rotate(${spinAmount}deg)`;
+
     setTimeout(() => {
-      clickHandler();
+      setIsOpen(true);
       setSpinning(false);
-    }, 2000);
+    }, 5100);
   };
 
   const clickHandler = function () {
@@ -176,7 +198,7 @@ function App() {
               ></path>
             </svg>
             <span class='sr-only'>Info</span>
-            <h3 class='text-3xl font-medium'>{randomIdea}</h3>
+            <h3 class='text-3xl font-medium'>{randomIdea.idea}</h3>
           </div>
           <div class='flex'>
             <button

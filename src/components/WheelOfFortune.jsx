@@ -8,8 +8,12 @@ const WheelOfFortune = ({ spinning, onSpin, ideas }) => {
       return;
     }
 
+    console.log("Spin clicked");
+
     onSpin();
   }
+
+  let pieClasses;
 
   const data = ideas.map((idea) => {
     return {
@@ -19,24 +23,8 @@ const WheelOfFortune = ({ spinning, onSpin, ideas }) => {
     };
   });
 
-  const startAngle = Math.floor(Math.random() * 360);
-
   return (
     <div className='relative flex justify-center items-center w-96 h-96 mx-5'>
-      <PieChart
-        data={data}
-        lineWidth={20}
-        label={({ dataEntry }) => dataEntry.title}
-        labelStyle={{
-          fontSize: "5px",
-          fontFamily: "sans-serif",
-          fill: "#fff",
-        }}
-        labelPosition={100}
-        radius={40}
-        animate={spinning}
-        startAngle={startAngle}
-      />
       <button
         className='absolute z-10 px-4 py-2 font-semibold text-white bg-blue-500 rounded-full '
         style={{ left: "50%", top: "50%", transform: "translate(-50%, -50%)" }}
@@ -45,6 +33,26 @@ const WheelOfFortune = ({ spinning, onSpin, ideas }) => {
         Spin
       </button>
       <Triangle className='absolute top-4' />
+      <div
+        className='relative flex justify-center items-center w-96 h-96 mx-5 transition-transform ease-in-out duration-[5000ms]'
+        style={pieClasses}
+        id='pie-container'
+      >
+        <PieChart
+          data={data}
+          lineWidth={20}
+          label={({ dataEntry }) => dataEntry.title}
+          labelStyle={{
+            fontSize: "5px",
+            fontFamily: "sans-serif",
+            fill: "#fff",
+          }}
+          labelPosition={100}
+          radius={40}
+          animate={spinning}
+          style={pieClasses}
+        />
+      </div>
     </div>
   );
 };
