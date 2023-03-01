@@ -1,14 +1,11 @@
 import React from "react";
 import { PieChart } from "react-minimal-pie-chart";
-import { ReactComponent as Triangle } from "../triangle-down.svg";
 
 const WheelOfFortune = ({ spinning, onSpin, ideas, isOpen }) => {
   function handleSpinClick() {
     if (spinning) {
       return;
     }
-
-    console.log("Spin clicked");
 
     onSpin();
   }
