@@ -1,7 +1,7 @@
 import React from "react";
 import { PieChart } from "react-minimal-pie-chart";
 
-const WheelOfFortune = ({ spinning, onSpin, ideas, isOpen }) => {
+const WheelOfFortune = ({ spinning, onSpin, ideas, isOpen, isMobile }) => {
   function handleSpinClick() {
     if (spinning) {
       return;
@@ -21,10 +21,14 @@ const WheelOfFortune = ({ spinning, onSpin, ideas, isOpen }) => {
   });
 
   return (
-    <div className='relative flex justify-center items-center w-96 h-96 mx-5'>
+    <div
+      className={`relative flex justify-center items-center ${
+        isMobile ? "w-72 h-72 mx-auto" : "w-96 h-96 mx-5"
+      }`}
+    >
       {!spinning && !isOpen && (
         <button
-          className='absolute z-10 px-4 py-2 font-semibold text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 rounded-full text-sm text-center mr-2 mb-2 '
+          className='absolute z-10 px-4 py-2 font-semibold text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none    focus:ring-purple-800    shadow-lg   shadow-purple-800/80 rounded-full text-sm text-center mr-2 mb-2 '
           style={{
             left: "50%",
             top: "50%",
@@ -42,7 +46,7 @@ const WheelOfFortune = ({ spinning, onSpin, ideas, isOpen }) => {
         strokeWidth={2}
         viewBox='0 0 24 24'
         xmlns='http://www.w3.org/2000/svg'
-        className='absolute top-7'
+        className={`absolute ${isMobile ? "top-4" : "top-7"}`}
         height='25px'
         width='25px'
       >
@@ -53,7 +57,9 @@ const WheelOfFortune = ({ spinning, onSpin, ideas, isOpen }) => {
         />
       </svg>
       <div
-        className='relative flex justify-center items-center w-96 h-96 mx-5 transition-transform ease-in-out duration-[5000ms]'
+        className={`relative flex justify-center items-center ${
+          isMobile ? "w-72 h-72" : "w-96 h-96"
+        } mx-5 transition-transform ease-in-out duration-[5000ms]`}
         style={pieClasses}
         id='pie-container'
       >

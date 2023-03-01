@@ -132,30 +132,51 @@ function App() {
     }, 5100);
   };
 
+  const isMobile = window.innerWidth <= 640;
+
   return (
-    <div>
+    <div className='h-screen overflow-auto min-h-screen bg-gray-900'>
       <nav className='flex items-center justify-start bg-gray-900 p-4 pl-48'>
         <div className='text-white text-3xl font-bold'>decide.</div>
       </nav>
-      <div className='App dark:bg-gray-900 h-screen flex justify-center items-center'>
+      <div
+        className={`App  h-screen w-screen min-h-screen ${
+          isMobile ? "flex-col" : "flex"
+        } justify-center items-center`}
+      >
         {ideas.length >= 1 && (
           <WheelOfFortune
             ideas={ideas}
             onSpin={handleSpin}
             spinning={spinning}
             isOpen={isOpen}
+            isMobile={isMobile}
           />
         )}
-        <div>
+        <div className='flex-col items-center justify-center text-center'>
           {ideas.length === 0 && (
-            <Status error={error.show} message={error.message} />
+            <Status
+              error={error.show}
+              message={error.message}
+              isMobile={isMobile}
+            />
           )}
-          {error.show && <Status error={error.show} message={error.message} />}
-          <div className='max-w-lg w-96 h-96 p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'>
+          {error.show && (
+            <Status
+              error={error.show}
+              message={error.message}
+              isMobile={isMobile}
+            />
+          )}
+          <div
+            className={`max-w-lg mx-auto ${
+              isMobile ? " w-72 h-72" : "w-96 h-96"
+            } p-6  border  rounded-lg shadow   bg-gray-800   border-gray-700`}
+          >
             <form onSubmit={handleAddIdeas}>
               <label
                 for='idea'
-                className='mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white'
+                className='mb-2 text-sm font-medium text-gray-900 sr-only   '
               >
                 Add an idea
               </label>
@@ -180,19 +201,23 @@ function App() {
                 </div>
                 <input
                   id='idea'
-                  className='block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-3'
+                  className='block w-full p-4 pl-10 text-sm text-white border rounded-lg bg-gray-700   border-gray-600 placeholder-gray-400 mb-3 focus:outline-none'
                   placeholder='Add an idea'
                   required
                 />
                 <button
                   type='submit'
-                  className='text-white absolute right-2.5 bottom-2.5 bg-gradient-to-br from-purple-600 to-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 hover:bg-gradient-to-bl font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
+                  className='text-white absolute right-2.5 bottom-2.5 bg-gradient-to-br from-purple-600 to-blue-500 focus:ring-4 focus:outline-none hover:bg-gradient-to-bl font-medium rounded-lg text-sm px-4 py-2   bg-blue-600   hover:bg-blue-700   focus:ring-blue-800'
                 >
                   Add
                 </button>
               </div>
             </form>
-            <div className='h-[17rem] overflow-y-auto '>
+            <div
+              className={`${
+                isMobile ? "h-[12rem]" : "h-[17rem]"
+              } overflow-y-auto mb-5`}
+            >
               <IdeasList ideas={ideas} onClick={handleRemoveIdeas} />
             </div>
           </div>
@@ -214,7 +239,11 @@ function App() {
         >
           <div
             id='alert-additional-content-3'
-            className='flex flex-col items-center justify-center content-center min-w-[30rem] min-h-[8rem] p-4 mb-4 text-green-800 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 dark:border-green-800 drop-shadow-2xl backdrop-filter backdrop-brightness-50'
+            className={`flex flex-col items-center justify-center content-center ${
+              isMobile ? "min-w-[20rem]" : "min-w-[30rem]"
+            } min-h-[8rem] p-4 mb-4  border rounded-lg   bg-gray-800   text-green-400   border-green-800 drop-shadow-2xl backdrop-filter backdrop-brightness-50 ${
+              isMobile ? "w-72" : ""
+            }`}
             role='alert'
           >
             <div className='flex items-center'>
@@ -237,7 +266,7 @@ function App() {
             <div className='flex'>
               <button
                 type='button'
-                className='text-green-800 bg-transparent border border-green-800 hover:bg-green-900 hover:text-white mt-3 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-xs px-3 py-1.5 text-center dark:hover:bg-green-600 dark:border-green-600 dark:text-green-400 dark:hover:text-white dark:focus:ring-green-800'
+                className=' bg-transparent border hover:text-white mt-3 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-xs px-3 py-1.5 text-center   hover:bg-green-600   border-green-600   text-green-400   '
                 onClick={() => setIsOpen(false)}
                 aria-label='Close'
               >
