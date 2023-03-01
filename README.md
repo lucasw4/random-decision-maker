@@ -2,6 +2,8 @@
 
 #### Demo
 
+##### Try the app: [Random Decision Maker](https://random-decisions.netlify.app/ "Random Decision Maker")
+
 ![Demo Gif of Random Decision Maker](https://github.com/lucasw4/random-decision-maker/blob/master/docs/demo.gif?raw=true)
 
 The Random Decision Maker is a simple web application, where the user can input up to 24 ideas into a wheel, and the app will randomly choose one of the ideas. This app was built by Lucas Sahota, using ReactJS and tailwindcss for styling.
