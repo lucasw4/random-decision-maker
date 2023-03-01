@@ -1,70 +1,39 @@
-# Getting Started with Create React App
+# Random Decision Maker
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+#### Demo
 
-## Available Scripts
+![Demo Gif of Random Decision Maker](https://github.com/lucasw4/random-decision-maker/blob/master/docs/demo.gif?raw=true)
 
-In the project directory, you can run:
+The Random Decision Maker is a simple web application, where the user can input up to 24 ideas into a wheel, and the app will randomly choose one of the ideas. This app was built by Lucas Sahota, using ReactJS and tailwindcss for styling.
 
-### `npm start`
+#### Error Message
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+![Screenshot of Random Decision Maker with Error Message](https://github.com/lucasw4/random-decision-maker/blob/master/docs/error-status.png?raw=true)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Features
 
-### `npm test`
+- Responsive, clean user interface
+- Custom roulette wheel
+- Ability to add and delete ideas
+- Status element for errors and tutorial
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Setup
 
-### `npm run build`
+1. Clone this repository to your local machine
+2. Navigate to the root directory of the application in your terminal
+3. Run `npm install` to install dependencies
+4. Run `npm start` to start the development server
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Usage
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Once the development server is running, navigate to http://localhost:3000 in your web browser. The Idea Spinner app will automatically load.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+To add a new idea, simply type it into the text input field and click the "Add Idea" button. The idea will be added to the list of ideas displayed on the screen.
 
-### `npm run eject`
+To spin the wheel and select a random idea, click the "Spin" button. The selected idea will be displayed on the screen.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Technologies
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- React
+- JavaScript
+- TailwindCSS
