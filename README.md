@@ -2,7 +2,7 @@
 
 #### Demo
 
-##### Try the app: [Random Decision Maker](https://random-decisions.netlify.app/ "Random Decision Maker")
+##### Try the app: [Random Decision Maker](https://random-decisions.netlify.app/)
 
 ![Demo Gif of Random Decision Maker](https://github.com/lucasw4/random-decision-maker/blob/master/docs/demo.gif?raw=true)
 
